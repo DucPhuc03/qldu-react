@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Sidebar from "../components/sidebar/Sidebar";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Council = () => {
   const [councils, setCouncils] = useState([
@@ -88,11 +88,13 @@ const Council = () => {
     // },
   ]);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8080/api/councils/teacher/6"
+          "http://localhost:8080/api/councils/teacher/5"
         );
         setCouncils(response.data.result);
       } catch (error) {
@@ -103,6 +105,14 @@ const Council = () => {
     fetchData();
   }, []);
   console.log(councils);
+
+  const handleViewDetail = (council) => {
+    // Chuyển sang trang chi tiết với dữ liệu council
+    navigate(`/hoi-dong/${council.id}`, {
+      state: { councilData: council },
+    });
+  };
+
   return (
     <div>
       <div className="d-flex mt-3">
@@ -110,10 +120,35 @@ const Council = () => {
           <Sidebar></Sidebar>
         </div>
         <div className="bg-light" style={{ width: "1200px" }}>
-          <div className="header d-flex align-items-center justify-content-end mt-3 me-3">
-            <i className="fa-solid fa-envelope fs-4"></i>
-            <i className="fa-solid fa-user-nurse ms-3 fs-4"></i>
-            <p className="mb-0 ms-1 fs-5">Nguyễn Đức Phức</p>
+          <div
+            className="header d-flex align-items-center justify-content-end mt-3 me-3 p-3 shadow rounded bg-white"
+            style={{ minHeight: 70 }}
+          >
+            <div className="d-flex align-items-center gap-3">
+              <div className="position-relative">
+                <img
+                  src="https://i.pravatar.cc/40?img=5"
+                  alt="avatar"
+                  className="rounded-circle border"
+                  style={{ width: 40, height: 40, objectFit: "cover" }}
+                />
+                <span
+                  className="position-absolute bottom-0 end-0 translate-middle p-1 bg-success border border-light rounded-circle"
+                  style={{ width: 10, height: 10 }}
+                ></span>
+              </div>
+              <div className="text-end">
+                <div className="fw-bold" style={{ fontSize: 18 }}>
+                  Trần Thị Mai
+                </div>
+                <div className="text-muted" style={{ fontSize: 13 }}>
+                  Giảng viên
+                </div>
+              </div>
+              <button className="btn btn-light border ms-3" title="Thông báo">
+                <i className="fa-solid fa-envelope fs-5 text-primary"></i>
+              </button>
+            </div>
           </div>
 
           <div className="container-fluid p-4">
@@ -176,12 +211,12 @@ const Council = () => {
                       </div>
 
                       <div className="mt-3">
-                        <Link
-                          to={`/hoi-dong/${council.id}`}
+                        <button
+                          onClick={() => handleViewDetail(council)}
                           className="btn btn-primary me-2"
                         >
                           <i className="fas fa-eye me-1"></i> Xem chi tiết
-                        </Link>
+                        </button>
                       </div>
                     </div>
                   </div>

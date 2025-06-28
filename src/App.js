@@ -9,12 +9,14 @@ import TopicDetail from "./pages/TopicDetail";
 import Group from "./pages/Group";
 import Council from "./pages/Council";
 import CouncilDetail from "./pages/CouncilDetail";
+import Login from "./pages/Login";
 
 function App() {
   return (
     <div className="App">
       <Routes>
         {/* <Route path="/" element={<DashBorad></DashBorad>} /> */}
+        <Route path="/login" element={<Login />} />
         <Route path="/do-an" element={<Topic></Topic>} />
         <Route path="/sinh-vien" element={<Student></Student>} />
         <Route path="/nhom-do-an" element={<Group></Group>} />
@@ -23,7 +25,7 @@ function App() {
           path="/hoi-dong/:councilId"
           element={<CouncilDetail></CouncilDetail>}
         />
-        <Route path="/do-an/:topicName" element={<TopicDetail></TopicDetail>} />
+        <Route path="/do-an/:topicID" element={<TopicDetail></TopicDetail>} />
         {/* <Route path="/ho-so" element={<Profile></Profile>} /> */}
       </Routes>
     </div>

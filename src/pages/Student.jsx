@@ -4,36 +4,51 @@ import axios from "axios";
 
 const Student = () => {
   const [students, setStudents] = useState([
-    // {
-    //   id: 1,
-    //   studentId: "SV001",
-    //   name: "Nguyễn Văn A",
-    //   email: "nguyenvana@example.com",
-    //   phone: "0123456789",
-    //   class: "CNTT1",
-    //   major: "Công nghệ thông tin",
-    //   projects: "Hệ thống IOT",
-    // },
-    // {
-    //   id: 2,
-    //   studentId: "SV002",
-    //   name: "Trần Thị B",
-    //   email: "tranthib@example.com",
-    //   phone: "0987654321",
-    //   class: "CNTT1",
-    //   major: "Công nghệ thông tin",
-    //   projects: "Ứng dụng Android",
-    // },
-    // {
-    //   id: 3,
-    //   studentId: "SV003",
-    //   name: "Lê Văn C",
-    //   email: "levanc@example.com",
-    //   phone: "0369852147",
-    //   class: "CNTT2",
-    //   major: "Công nghệ thông tin",
-    //   projects: "Ứng dungj Web",
-    // },
+    {
+      id: 1,
+      idNum: "SV001",
+      name: "Nguyễn Văn An",
+      email: "nguyenvanan@example.com",
+      course: { name: "CNTT1" },
+      major: { name: "Công nghệ thông tin" },
+      topicName: "Hệ thống quản lý đồ án",
+    },
+    {
+      id: 2,
+      idNum: "SV002",
+      name: "Trần Thị Bình",
+      email: "tranthibinh@example.com",
+      course: { name: "CNTT1" },
+      major: { name: "Công nghệ thông tin" },
+      topicName: "Ứng dụng di động quản lý nhà hàng",
+    },
+    {
+      id: 3,
+      idNum: "SV003",
+      name: "Lê Văn Cường",
+      email: "levancuong@example.com",
+      course: { name: "CNTT2" },
+      major: { name: "Công nghệ thông tin" },
+      topicName: "Website bán hàng trực tuyến",
+    },
+    {
+      id: 4,
+      idNum: "SV004",
+      name: "Phạm Thị Dung",
+      email: "phamthidung@example.com",
+      course: { name: "CNTT2" },
+      major: { name: "Công nghệ thông tin" },
+      topicName: "Hệ thống quản lý thư viện",
+    },
+    {
+      id: 5,
+      idNum: "SV005",
+      name: "Hoàng Văn Em",
+      email: "hoangvanem@example.com",
+      course: { name: "CNTT3" },
+      major: { name: "Công nghệ thông tin" },
+      topicName: "Ứng dụng quản lý tài chính cá nhân",
+    },
   ]);
 
   useEffect(() => {
@@ -42,7 +57,7 @@ const Student = () => {
         const response = await axios.get(
           "http://localhost:8080/student_topic/1"
         );
-        setStudents(response.data.result);
+        //setStudents(response.data.result);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -57,10 +72,35 @@ const Student = () => {
           <Sidebar></Sidebar>
         </div>
         <div className="bg-light" style={{ width: "1200px" }}>
-          <div className="header d-flex align-items-center justify-content-end mt-3 me-3">
-            <i className="fa-solid fa-envelope fs-4"></i>
-            <i className="fa-solid fa-user-nurse ms-3 fs-4"></i>
-            <p className="mb-0 ms-1 fs-5">Nguyễn Đức Phức</p>
+          <div
+            className="header d-flex align-items-center justify-content-end mt-3 me-3 p-3 shadow rounded bg-white"
+            style={{ minHeight: 70 }}
+          >
+            <div className="d-flex align-items-center gap-3">
+              <div className="position-relative">
+                <img
+                  src="https://i.pravatar.cc/40?img=5"
+                  alt="avatar"
+                  className="rounded-circle border"
+                  style={{ width: 40, height: 40, objectFit: "cover" }}
+                />
+                <span
+                  className="position-absolute bottom-0 end-0 translate-middle p-1 bg-success border border-light rounded-circle"
+                  style={{ width: 10, height: 10 }}
+                ></span>
+              </div>
+              <div className="text-end">
+                <div className="fw-bold" style={{ fontSize: 18 }}>
+                  Trần Thị Mai
+                </div>
+                <div className="text-muted" style={{ fontSize: 13 }}>
+                  Giảng viên
+                </div>
+              </div>
+              <button className="btn btn-light border ms-3" title="Thông báo">
+                <i className="fa-solid fa-envelope fs-5 text-primary"></i>
+              </button>
+            </div>
           </div>
 
           <div className="container-fluid p-4">
@@ -103,7 +143,7 @@ const Student = () => {
             </div>
 
             {/* Statistics Cards */}
-            <div className="row mb-4">
+            {/* <div className="row mb-4">
               <div className="col-md-3">
                 <div className="card bg-primary text-white">
                   <div className="card-body">
@@ -143,7 +183,7 @@ const Student = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             {/* Students Table */}
             <div className="card">
@@ -190,12 +230,12 @@ const Student = () => {
                             <button className="btn btn-sm btn-outline-primary me-2">
                               <i className="fas fa-eye"></i>
                             </button>
-                            <button className="btn btn-sm btn-outline-success me-2">
+                            {/* <button className="btn btn-sm btn-outline-success me-2">
                               <i className="fas fa-edit"></i>
                             </button>
                             <button className="btn btn-sm btn-outline-danger">
                               <i className="fas fa-trash"></i>
-                            </button>
+                            </button> */}
                           </td>
                         </tr>
                       ))}

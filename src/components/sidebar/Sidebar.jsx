@@ -53,6 +53,17 @@ const Sidebar = () => {
           </li>
         ))}
       </ul>
+      <hr style={{ borderColor: "rgba(255,255,255,0.1)" }} />
+      <button
+        className="btn btn-danger w-100 mt-3"
+        style={{ background: "#e74c3c", border: "none" }}
+        onClick={() => {
+          localStorage.clear();
+          window.location.href = "/login";
+        }}
+      >
+        <i className="fas fa-sign-out-alt me-2"></i> Đăng xuất
+      </button>
     </div>
   );
 };
